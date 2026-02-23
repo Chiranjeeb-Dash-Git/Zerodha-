@@ -12,12 +12,9 @@ function Dashboard() {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token');
-        const portfolioRes = await axios.get(`${API_BASE}/api/portfolio`, {
-          headers: { 'x-auth-token': token }
-        });
-        const marketRes = await axios.get(`${API_BASE}/api/market`, {
-          headers: { 'x-auth-token': token }
-        });
+        const headers = token ? { Authorization: `Bearer ${token}` } : {};
+        const portfolioRes = await axios.get(`${API_BASE}/api/portfolio`, { headers });
+        const marketRes = await axios.get(`${API_BASE}/api/market`, { headers });
         
         setPortfolioData(portfolioRes.data);
         setMarketData(marketRes.data);

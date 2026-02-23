@@ -16,7 +16,7 @@ function PortfolioAnalysis() {
             try {
                 const token = localStorage.getItem('token');
                 const response = await axios.get(`${API_BASE}/api/portfolio`, {
-                    headers: { 'x-auth-token': token }
+                    headers: token ? { Authorization: `Bearer ${token}` } : {}
                 });
                 setPortfolio(response.data);
             } catch (error) {

@@ -13,7 +13,7 @@ function Dashboard() {
         const fetchData = async () => {
             const token = localStorage.getItem('token');
             const config = {
-                headers: { 'x-auth-token': token }
+                headers: token ? { Authorization: `Bearer ${token}` } : {}
             };
 
             try {
