@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE } from '../../config';
 import './Dashboard.css';
 
 function Dashboard() {
@@ -17,8 +18,8 @@ function Dashboard() {
 
             try {
                 const [portfolioRes, ordersRes] = await Promise.all([
-                    axios.get('http://localhost:5000/api/portfolio', config),
-                    axios.get('http://localhost:5000/api/orders', config)
+                    axios.get(`${API_BASE}/api/portfolio`, config),
+                    axios.get(`${API_BASE}/api/orders`, config)
                 ]);
 
                 setPortfolio(portfolioRes.data);

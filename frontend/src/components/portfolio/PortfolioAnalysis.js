@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE } from '../../config';
 import './PortfolioAnalysis.css';
 
 function PortfolioAnalysis() {
@@ -14,7 +15,7 @@ function PortfolioAnalysis() {
         const fetchPortfolio = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get('http://localhost:5000/api/portfolio', {
+                const response = await axios.get(`${API_BASE}/api/portfolio`, {
                     headers: { 'x-auth-token': token }
                 });
                 setPortfolio(response.data);

@@ -30,6 +30,7 @@ jobs:
       - run: npm run build
         env:
           NODE_OPTIONS: --openssl-legacy-provider
+          REACT_APP_API_BASE: ${{ secrets.REACT_APP_API_BASE }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: frontend/build
@@ -43,4 +44,3 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
-

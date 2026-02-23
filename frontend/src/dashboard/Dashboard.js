@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE } from '../config';
 
 function Dashboard() {
   const [portfolioData, setPortfolioData] = useState(null);
@@ -11,10 +12,10 @@ function Dashboard() {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token');
-        const portfolioRes = await axios.get('http://localhost:5000/api/portfolio', {
+        const portfolioRes = await axios.get(`${API_BASE}/api/portfolio`, {
           headers: { 'x-auth-token': token }
         });
-        const marketRes = await axios.get('http://localhost:5000/api/market', {
+        const marketRes = await axios.get(`${API_BASE}/api/market`, {
           headers: { 'x-auth-token': token }
         });
         
