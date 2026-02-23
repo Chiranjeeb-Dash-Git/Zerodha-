@@ -1,0 +1,37 @@
+.varsity-content {
+    padding-right: 40px;
+}
+
+.varsity-content h3 {
+    color: #424242;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.varsity-content p {
+    color: #666;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.varsity-image {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .varsity-content {
+        padding-right: 0;
+        margin-bottom: 30px;
+    }
+}

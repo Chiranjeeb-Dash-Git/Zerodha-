@@ -1,0 +1,30 @@
+.login-container {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  padding: 20px 0;
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+}
+
+.card-body {
+  padding: 40px;
+}
+
+.form-control {
+  padding: 12px;
+  border-radius: 5px;
+}
+
+.btn-primary {
+  background-color: #387ed1;
+  border: none;
+  padding: 12px;
+  font-weight: 500;
+}
+
+.btn-primary:hover {
+  background-color: #2d6ab4;
+}

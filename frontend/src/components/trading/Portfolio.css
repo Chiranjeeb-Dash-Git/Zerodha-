@@ -1,0 +1,48 @@
+.portfolio-container {
+    padding: 20px;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.portfolio-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.holding-details {
+    margin: 15px 0;
+}
+
+.holding-details > div {
+    margin: 5px 0;
+}
+
+.profit-loss {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.profit-loss.positive {
+    color: #28a745;
+}
+
+.profit-loss.negative {
+    color: #dc3545;
+}
+
+.chart-container {
+    height: 200px;
+    margin: 20px 0;
+    width: 100%;
+    background: white;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+}

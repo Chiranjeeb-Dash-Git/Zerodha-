@@ -1,0 +1,140 @@
+.my-orders-container {
+    padding: 20px;
+    background: #f8f9fa;
+    min-height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.portfolio-section,
+.order-history-section {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+}
+
+.portfolio-section:hover,
+.order-history-section:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+h2 {
+    margin-bottom: 25px;
+    color: #1a237e;
+    font-size: 24px;
+    font-weight: 600;
+    border-bottom: 2px solid #e3f2fd;
+    padding-bottom: 10px;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.orders-table {
+    overflow-x: auto;
+    border-radius: 8px;
+    background: #ffffff;
+}
+
+.orders-table table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 10px 0;
+}
+
+.orders-table th {
+    background: #f5f7fa;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    color: #2c3e50;
+    border-bottom: 2px solid #e3e8ef;
+    white-space: nowrap;
+}
+
+.orders-table td {
+    padding: 15px;
+    border-bottom: 1px solid #edf2f7;
+    color: #4a5568;
+    transition: background-color 0.2s ease;
+}
+
+.orders-table tr:hover {
+    background: #f8fafc;
+}
+
+.orders-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Profit/Loss styling */
+.profit {
+    color: #00c853 !important;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+}
+
+.profit::before {
+    content: "↑";
+    margin-right: 4px;
+}
+
+.loss {
+    color: #ff1744 !important;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+}
+
+.loss::before {
+    content: "↓";
+    margin-right: 4px;
+}
+
+/* Delete button styling */
+.delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    color: #e53935;
+    opacity: 0.8;
+}
+
+.delete-btn:hover {
+    background: rgba(239, 68, 68, 0.1);
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .orders-table {
+        font-size: 14px;
+    }
+    
+    .orders-table td,
+    .orders-table th {
+        padding: 12px 10px;
+    }
+    
+    .my-orders-container {
+        padding: 15px;
+    }
+}

@@ -1,0 +1,147 @@
+body {
+    padding-top: 60px;
+}
+
+.navbar {
+    background: white;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-logo img {
+    height: 20px;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    margin-left: 30px;
+}
+
+.nav-link {
+    color: #444;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #387ed1;
+}
+
+/* Support section styling */
+.support-link {
+    display: flex;
+    align-items: center;
+    color: #444;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.support-link:hover {
+    color: #387ed1;
+}
+
+.support-info {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    min-width: 250px;
+    display: none;
+    z-index: 1001;
+}
+
+.nav-item:hover .support-info {
+    display: block;
+}
+
+.support-info h4 {
+    color: #1a237e;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.support-info p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.support-info .contact-item {
+    display: flex;
+    align-items: center;
+    color: #444;
+    text-decoration: none;
+    margin: 8px 0;
+    transition: color 0.3s ease;
+}
+
+.support-info .contact-item:hover {
+    color: #387ed1;
+}
+
+.support-info .contact-item i {
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+.support-info .linkedin-link {
+    color: #0077b5;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    margin-top: 12px;
+    font-weight: 500;
+}
+
+.support-info .linkedin-link:hover {
+    color: #005582;
+}
+
+.logout-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font: inherit;
+    color: #444;
+}
+
+.logout-btn:hover {
+    color: #387ed1;
+}

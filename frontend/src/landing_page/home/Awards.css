@@ -1,0 +1,48 @@
+.container {
+    padding: 60px 0;
+}
+
+.img-fluid {
+    max-width: 200px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.img-fluid:hover {
+    transform: scale(1.05);
+}
+
+h2 {
+    color: #424242;
+    font-weight: 500;
+    margin-bottom: 40px;
+}
+
+.text-center {
+    margin-bottom: 50px;
+}
+
+.award-image {
+    width: 200px;
+    height: auto;
+    margin: 20px 0;
+}
+
+.award-text {
+  min-height: 30px;
+  position: relative;
+}
+
+.award-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+  position: absolute;
+  width: 100%;
+  left: 0;
+}
+
+.award-item.active {
+  opacity: 1;
+  transform: translateY(0);
+}

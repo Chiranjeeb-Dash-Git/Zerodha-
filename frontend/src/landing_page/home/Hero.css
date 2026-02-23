@@ -1,0 +1,43 @@
+.hero {
+    padding: 80px 0;
+    background: #fff;
+}
+
+.hero h1 {
+    font-size: 3.2rem;
+    color: #424242;
+    margin-bottom: 20px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.hero .lead {
+    font-size: 1.25rem;
+    color: #666;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.btn-primary {
+    background-color: #387ed1;
+    border: none;
+    padding: 12px 35px;
+    font-size: 1.1rem;
+    border-radius: 3px;
+}
+
+.btn-primary:hover {
+    background-color: #2c6cb9;
+}
+
+.arrow-blink {
+  display: inline-block;
+  margin-left: 8px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}

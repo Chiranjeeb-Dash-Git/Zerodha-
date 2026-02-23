@@ -1,0 +1,18 @@
+.signup-container {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.card {
+  border-radius: 10px;
+  border: none;
+}
+
+.btn-primary {
+  background-color: #387ed1;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #2d6cb5;
+}

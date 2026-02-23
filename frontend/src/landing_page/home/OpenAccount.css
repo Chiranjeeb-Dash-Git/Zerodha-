@@ -1,0 +1,23 @@
+.btn-primary {
+    background-color: #387ed1;
+    border: none;
+    padding: 10px 30px;
+    font-size: 1.1rem;
+    border-radius: 3px;
+}
+
+.btn-primary:hover {
+    background-color: #2c6cb9;
+}
+
+h2 {
+    color: #424242;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+p {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}

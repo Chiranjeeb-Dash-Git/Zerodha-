@@ -1,0 +1,217 @@
+.footer {
+    background: #fafbfc;
+    padding: 30px 0 20px;  /* reduced padding */
+    color: #424242;
+    font-size: 14px;
+}
+
+.footer h5 {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 12px;  /* reduced margin */
+    color: #424242;
+}
+
+.footer ul li {
+    margin-bottom: 8px;  /* reduced margin */
+}
+
+.social-links {
+    margin-top: 15px !important;  /* reduced margin */
+}
+
+.map-image {
+    margin-bottom: 8px;  /* reduced margin */
+}
+
+.footer-bottom {
+    margin-top: 20px;  /* reduced margin */
+    padding-top: 20px;  /* reduced padding */
+}
+
+.regulatory-info {
+    margin-top: 20px;  /* reduced margin */
+    padding-top: 20px;  /* reduced padding */
+}
+
+.reg-text {
+    margin-bottom: 8px;  /* reduced margin */
+}
+
+.sebi-scores {
+    margin: 10px 0;  /* reduced margin */
+}
+
+.attention-investors {
+    margin: 10px 0;  /* reduced margin */
+}
+
+.attention-investors li {
+    margin-bottom: 5px;  /* reduced margin */
+}
+
+.mb-4 {
+    margin-bottom: 15px !important;  /* reduced bootstrap margin */
+}
+
+.footer-logo {
+    height: 17px;
+}
+
+.footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer ul li {
+    margin-bottom: 12px;
+}
+
+.footer a {
+    color: #666;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #387ed1;
+}
+
+.phone {
+    color: #666;
+}
+
+.social-links a {
+    margin-right: 15px;
+}
+
+.map-image {
+    width: 100%;
+    max-width: 200px;
+    margin-bottom: 15px;
+}
+
+.office-link {
+    color: #387ed1;
+    font-weight: 500;
+}
+
+.footer-bottom {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+}
+
+.reg-text {
+    color: #666;
+    font-size: 12px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.reg-text a {
+    color: #387ed1;
+    text-decoration: none;
+}
+
+.reg-text a:hover {
+    text-decoration: underline;
+}
+
+.sebi-scores {
+    margin: 20px 0;
+}
+
+.warning {
+    font-weight: 500;
+}
+
+.attention-investors {
+    margin: 20px 0;
+}
+
+.attention-investors ol {
+    padding-left: 15px;
+    margin: 10px 0;
+}
+
+.attention-investors li {
+    color: #666;
+    font-size: 12px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.footer-bottom p {
+    margin-bottom: 10px;
+}
+
+.footer-info {
+    text-align: right;
+}
+
+@media (max-width: 768px) {
+    .footer-info {
+        text-align: left;
+    }
+}
+
+.regulatory-section {
+    border-top: 1px solid #eee;
+    margin-top: 15px;
+    padding-top: 15px;
+}
+
+.footer-bottom {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.footer-bottom p {
+    margin-bottom: 2px;
+    font-size: 11px;
+    line-height: 1.3;
+}
+
+.regulatory-info {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.reg-text {
+    color: #666;
+    font-size: 11px;
+    line-height: 1.3;
+    margin-bottom: 2px;
+}
+
+.sebi-scores {
+    margin: 2px 0;
+}
+
+.warning {
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+.attention-investors {
+    margin: 2px 0;
+}
+
+.attention-investors ol {
+    padding-left: 12px;
+    margin: 2px 0;
+}
+
+.attention-investors li {
+    color: #666;
+    font-size: 11px;
+    line-height: 1.3;
+    margin-bottom: 2px;
+}
+
+.attention-investors p {
+    margin-bottom: 2px;
+}

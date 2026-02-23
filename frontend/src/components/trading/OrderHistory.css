@@ -1,0 +1,38 @@
+.order-history-container {
+    padding: 20px;
+}
+
+.orders-table {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+.orders-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.orders-table th,
+.orders-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.orders-table th {
+    background: #f8f9fa;
+    font-weight: 600;
+    color: #495057;
+}
+
+.orders-table tr:hover {
+    background: #f8f9fa;
+}
+
+.buy {
+    color: #28a745;
+}
+
+.sell {
+    color: #dc3545;
+}
