@@ -3,9 +3,8 @@ services:
     name: zerodha-backend
     env: node
     plan: free
-    rootDir: backend
-    buildCommand: npm install
-    startCommand: npm start
+    buildCommand: npm install && cd backend && npm install
+    startCommand: node backend/server.js
     healthCheckPath: /healthz
     autoDeploy: true
     envVars:

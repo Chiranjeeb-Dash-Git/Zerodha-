@@ -2,9 +2,13 @@
   "name": "zerodha-clone",
   "version": "1.0.0",
   "description": "Zerodha trading platform clone",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
-    "start": "concurrently \"cd backend && npm start\" \"cd frontend && npm start\"",
-    "install-deps": "concurrently \"cd backend && npm install\" \"cd frontend && npm install\""
+    "start": "node backend/server.js",
+    "install-deps": "concurrently \"cd backend && npm install\" \"cd frontend && npm install\"",
+    "build": "cd backend && npm install"
   },
   "dependencies": {
     "bootstrap": "^5.3.5",
