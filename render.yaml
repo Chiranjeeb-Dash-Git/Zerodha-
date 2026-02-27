@@ -3,7 +3,7 @@ services:
     name: zerodha-backend
     env: node
     plan: free
-    buildCommand: npm install && cd backend && npm install
+    buildCommand: npm install --legacy-peer-deps && cd backend && npm install --legacy-peer-deps
     startCommand: node backend/server.js
     healthCheckPath: /healthz
     autoDeploy: true
