@@ -49,7 +49,7 @@ function Education() {
         </div>
         <div className="col-md-5">
           <img 
-            src="/media/images/ecosystem.png" 
+            src={process.env.PUBLIC_URL + "/media/images/ecosystem.png"} 
             alt="Zerodha Ecosystem" 
             className="ecosystem-image"
           />

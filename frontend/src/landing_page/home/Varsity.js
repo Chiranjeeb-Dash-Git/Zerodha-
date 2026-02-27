@@ -17,7 +17,7 @@ function Varsity() {
         </div>
         <div className="col-md-6">
           <img 
-            src="/media/images/varsity.png"
+            src={process.env.PUBLIC_URL + "/media/images/varsity.png"}
             alt="Varsity Education" 
             className="varsity-image"
             onError={(e) => {

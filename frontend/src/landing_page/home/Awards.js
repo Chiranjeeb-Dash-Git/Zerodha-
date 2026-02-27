@@ -33,7 +33,7 @@ function Awards() {
         </div>
         <div className="col-md-4 text-center">
           <img 
-            src="/media/images/largestBroker.svg" 
+            src={process.env.PUBLIC_URL + "/media/images/largestBroker.svg"} 
             alt="Digital Innovation Award" 
             className="img-fluid mb-3 award-image"
           />
