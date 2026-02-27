@@ -7,6 +7,9 @@
   },
   "scripts": {
     "start": "node backend/server.js",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "backend": "node backend/server.js",
+    "frontend": "cd frontend && npm start",
     "install-deps": "concurrently \"cd backend && npm install\" \"cd frontend && npm install\"",
     "build": "cd backend && npm install"
   },
