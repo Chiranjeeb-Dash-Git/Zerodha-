@@ -1,5 +1,5 @@
 const DEFAULT_LOCAL = 'http://localhost:5000';
-const PROD_FALLBACK = 'https://zerodha-e1nb.onrender.com';
+const PROD_FALLBACK = 'https://zerodha-r76z.onrender.com';
 
 export const API_BASE =
   process.env.REACT_APP_API_BASE ||
