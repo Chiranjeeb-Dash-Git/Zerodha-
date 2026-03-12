@@ -1,4 +1,4 @@
-# 📈 Zerodha – Stock Trading Platform         https://chiranjeeb-dash-git.github.io/Zerodha-/
+# 📈 Zerodha – Stock Trading Platform ( https://chiranjeeb-dash-git.github.io/Zerodha-/ )
 
 A full-stack stock trading platform that enables users to buy/sell stocks in real-time with live market data, portfolio tracking, and interactive analytics.
 
