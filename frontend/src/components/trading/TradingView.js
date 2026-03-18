@@ -240,7 +240,9 @@ function TradingView() {
             <div className="market-watch">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <h2>Market Watch</h2>
-                    <button className="my-orders-btn" onClick={() => navigate('/my-orders')}>My Orders</button>
+                    <button className="my-orders-btn" onClick={() => navigate('/my-orders')}>
+                        <i className="fas fa-clipboard-list"></i> My Orders
+                    </button>
                 </div>
                 <div className="stocks-table">
                     <table>
@@ -272,7 +274,7 @@ function TradingView() {
                                                 handleTrade(stock.id, 'BUY');
                                             }}
                                         >
-                                            Buy
+                                            <i className="fas fa-arrow-up"></i> Buy
                                         </button>
                                         <button 
                                             className="sell-btn"
@@ -281,7 +283,7 @@ function TradingView() {
                                                 handleTrade(stock.id, 'SELL');
                                             }}
                                         >
-                                            Sell
+                                            <i className="fas fa-arrow-down"></i> Sell
                                         </button>
                                     </td>
                                 </tr>
