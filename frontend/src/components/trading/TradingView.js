@@ -288,7 +288,7 @@ function TradingView() {
                                     legend: { display: false },
                                     tooltip: {
                                         enabled: true,
-                                        backgroundColor: 'rgba(13, 17, 23, 0.95)',
+                                        backgroundColor: 'rgba(13, 17, 23, 1)',
                                         titleFont: { family: "'Outfit', sans-serif", size: 13, weight: '700' },
                                         bodyFont: { family: "'JetBrains Mono', monospace", size: 12 },
                                         padding: 12,
@@ -300,10 +300,13 @@ function TradingView() {
                                         }
                                     }
                                 },
+                                canvas: {
+                                    backgroundColor: 'transparent'
+                                },
                                 scales: {
                                     y: {
                                         beginAtZero: false,
-                                        grid: { color: 'rgba(255,255,255,0.03)', drawBorder: false },
+                                        grid: { color: 'rgba(255,255,255,0.05)', drawBorder: false },
                                         ticks: { 
                                             color: '#8e9aaf', 
                                             font: { family: "'JetBrains Mono', monospace", size: 10 },

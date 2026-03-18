@@ -129,12 +129,12 @@
 .chart-container {
     flex: 1;
     min-height: 450px;
-    background: var(--bg-panel);
-    border: 1px solid var(--border-subtle);
-    border-radius: 20px;
+    background: var(--bg-panel) !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: 20px !important;
     padding: 20px;
     backdrop-filter: blur(10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4) !important;
 }
 
 /* === Right: Market Watch === */
