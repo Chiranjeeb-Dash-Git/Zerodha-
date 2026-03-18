@@ -7,6 +7,7 @@ const User = require('../models/User');
 router.post('/register', async (req, res) => {
     try {
         const { name, email, password } = req.body;
+        console.log('Registering user:', { name, email });
         
         let user = await User.findOne({ email });
         if (user) {
@@ -22,6 +23,7 @@ router.post('/register', async (req, res) => {
         });
 
         await user.save();
+        console.log('User saved successfully');
         
         const token = jwt.sign(
             { userId: user._id },
@@ -31,7 +33,12 @@ router.post('/register', async (req, res) => {
 
         res.json({ token });
     } catch (error) {
-        res.status(500).json({ message: 'Server error' });
+        console.error('Registration Error:', error);
+        res.status(500).json({ 
+            message: 'Server error during registration', 
+            error: error.message,
+            stack: process.env.NODE_ENV === 'production' ? null : error.stack
+        });
     }
 });
 
