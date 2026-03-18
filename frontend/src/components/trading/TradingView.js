@@ -117,6 +117,7 @@ function TradingView() {
                 const updated = prevStocks.map(stock => {
                     const newPrice = +(stock.price * (1 + (Math.random() - 0.5) * 0.02)).toFixed(2);
                     const diff = newPrice - stock.price;
+                    const flashStatus = diff > 0 ? 'flash-up' : diff < 0 ? 'flash-down' : '';
                     const changePct = ((diff / stock.price) * 100).toFixed(1);
                     const newHistory = [...stock.history.slice(1), newPrice];
                     return {
@@ -124,6 +125,7 @@ function TradingView() {
                         price: newPrice,
                         change: `${diff >= 0 ? '+' : ''}${changePct}%`,
                         history: newHistory,
+                        flashStatus: flashStatus
                     };
                 });
 
@@ -135,7 +137,12 @@ function TradingView() {
 
                 return updated;
             });
-        }, 2000);
+
+            // Clear flash status after animation completes (1s in CSS)
+            setTimeout(() => {
+                setStocks(prevStocks => prevStocks.map(s => ({ ...s, flashStatus: '' })));
+            }, 1000);
+        }, 3000); // Slightly slower intervals for better visual clarity of flashes
 
         return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -318,7 +325,7 @@ function TradingView() {
                                             <div className="stock-symbol-cell">{stock.symbol}</div>
                                             <div className="stock-name-cell">{stock.name}</div>
                                         </td>
-                                        <td className="stock-price-cell">₹{stock.price.toFixed(2)}</td>
+                                        <td className={`stock-price-cell ${stock.flashStatus || ''}`}>₹{stock.price.toFixed(2)}</td>
                                         <td className={stock.change.startsWith('+') ? 'positive' : 'negative'}>
                                             {stock.change}
                                         </td>
