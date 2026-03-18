@@ -238,7 +238,10 @@ function TradingView() {
             </div>
             
             <div className="market-watch">
-                <h2>Market Watch</h2>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <h2>Market Watch</h2>
+                    <button className="my-orders-btn" onClick={() => navigate('/my-orders')}>My Orders</button>
+                </div>
                 <div className="stocks-table">
                     <table>
                         <thead>
@@ -286,7 +289,6 @@ function TradingView() {
                         </tbody>
                     </table>
                 </div>
-                <button className="my-orders-btn" onClick={() => navigate('/my-orders')}>My Orders</button>
             </div>
 
             <TradeModal
