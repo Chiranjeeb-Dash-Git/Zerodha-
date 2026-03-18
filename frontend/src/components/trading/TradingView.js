@@ -193,103 +193,136 @@ function TradingView() {
 
     return (
         <div className="trading-view-container">
-            <div className="chart-section">
-                <h3>{selectedStock ? selectedStock.name : 'Market Overview'}</h3>
-                <div className="chart-container">
-                    <Line 
-                        data={chartData}
-                        options={{
-                            responsive: true,
-                            maintainAspectRatio: false,
-                            plugins: {
-                                legend: {
-                                    position: 'top',
-                                },
-                                title: {
-                                    display: true,
-                                    text: 'Stock Price Movement'
-                                }
-                            },
-                            scales: {
-                                y: {
-                                    beginAtZero: false,
-                                    grid: {
-                                        color: 'rgba(0, 0, 0, 0.1)'
-                                    }
-                                },
-                                x: {
-                                    grid: {
-                                        display: false
-                                    }
-                                }
-                            },
-                            elements: {
-                                line: {
-                                    tension: 0.4
-                                },
-                                point: {
-                                    radius: 3,
-                                    hoverRadius: 6
-                                }
-                            }
-                        }}
-                    />
+            {/* ── Top Stats Bar ── */}
+            <div className="trading-stats-bar">
+                <div className="stat-item">
+                    <span className="stat-label">SENSEX</span>
+                    <span className="stat-value up">74,339 <small>+0.62%</small></span>
+                </div>
+                <div className="stat-sep" />
+                <div className="stat-item">
+                    <span className="stat-label">NIFTY 50</span>
+                    <span className="stat-value up">22,519 <small>+0.58%</small></span>
+                </div>
+                <div className="stat-sep" />
+                <div className="stat-item">
+                    <span className="stat-label">BANK NIFTY</span>
+                    <span className="stat-value down">48,012 <small>-0.21%</small></span>
+                </div>
+                <div className="stat-sep" />
+                <div className="stat-item">
+                    <span className="stat-label">INDIA VIX</span>
+                    <span className="stat-value">14.32</span>
+                </div>
+                <div className="stat-sep" />
+                <div className="stat-item">
+                    <span className="stat-label">USD/INR</span>
+                    <span className="stat-value down">83.72 <small>-0.09%</small></span>
                 </div>
             </div>
-            
-            <div className="market-watch">
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <h2>Market Watch</h2>
-                    <button className="my-orders-btn" onClick={() => navigate('/my-orders')}>
-                        <i className="fas fa-clipboard-list"></i> My Orders
-                    </button>
+
+            {/* ── Two-Column Body ── */}
+            <div className="trading-body">
+                {/* Chart Panel */}
+                <div className="chart-section">
+                    <div className="chart-section-header">
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                            {selectedStock ? (
+                                <span className="selected-stock-tag">
+                                    <i className="fas fa-chart-line" />
+                                    {selectedStock.symbol} — {selectedStock.name}
+                                </span>
+                            ) : (
+                                <h3>Market Overview</h3>
+                            )}
+                        </div>
+                        <span className="live-badge">● Live</span>
+                    </div>
+                    <div className="chart-container">
+                        <Line 
+                            data={chartData}
+                            options={{
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                plugins: {
+                                    legend: { display: false },
+                                    title: { display: false }
+                                },
+                                scales: {
+                                    y: {
+                                        beginAtZero: false,
+                                        grid: { color: 'rgba(255,255,255,0.04)' },
+                                        ticks: { color: '#4a5568', font: { size: 11 } },
+                                        border: { color: 'transparent' }
+                                    },
+                                    x: {
+                                        grid: { display: false },
+                                        ticks: { color: '#4a5568', font: { size: 11 } },
+                                        border: { color: 'rgba(255,255,255,0.04)' }
+                                    }
+                                },
+                                elements: {
+                                    line: { tension: 0.4, borderWidth: 2 },
+                                    point: { radius: 0, hoverRadius: 5 }
+                                }
+                            }}
+                        />
+                    </div>
                 </div>
-                <div className="stocks-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Symbol</th>
-                                <th>Company</th>
-                                <th>Price</th>
-                                <th>Change</th>
-                                <th>Volume</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {stocks.map(stock => (
-                                <tr key={stock.id} onClick={() => setSelectedStock(stock)}>
-                                    <td>{stock.symbol}</td>
-                                    <td>{stock.name}</td>
-                                    <td>₹{stock.price.toFixed(2)}</td>
-                                    <td className={stock.change.startsWith('+') ? 'positive' : 'negative'}>
-                                        {stock.change}
-                                    </td>
-                                    <td>{stock.volume}</td>
-                                    <td>
-                                        <button 
-                                            className="buy-btn"
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                handleTrade(stock.id, 'BUY');
-                                            }}
-                                        >
-                                            <i className="fas fa-arrow-up"></i> Buy
-                                        </button>
-                                        <button 
-                                            className="sell-btn"
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                handleTrade(stock.id, 'SELL');
-                                            }}
-                                        >
-                                            <i className="fas fa-arrow-down"></i> Sell
-                                        </button>
-                                    </td>
+
+                {/* Market Watch Panel */}
+                <div className="market-watch">
+                    <div className="market-watch-header">
+                        <div>
+                            <h2>Market Watch</h2>
+                            <span className="stocks-count">{stocks.length} stocks</span>
+                        </div>
+                        <button className="my-orders-btn" onClick={() => navigate('/my-orders')}>
+                            <i className="fas fa-clipboard-list" /> My Orders
+                        </button>
+                    </div>
+                    <div className="stocks-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Symbol</th>
+                                    <th>Price</th>
+                                    <th>Chg%</th>
+                                    <th>Actions</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {stocks.map(stock => (
+                                    <tr key={stock.id} onClick={() => setSelectedStock(stock)}>
+                                        <td>
+                                            <div className="stock-symbol-cell">{stock.symbol}</div>
+                                            <div className="stock-name-cell">{stock.name}</div>
+                                        </td>
+                                        <td className="stock-price-cell">₹{stock.price.toFixed(2)}</td>
+                                        <td className={stock.change.startsWith('+') ? 'positive' : 'negative'}>
+                                            {stock.change}
+                                        </td>
+                                        <td>
+                                            <div className="actions-cell">
+                                                <button 
+                                                    className="buy-btn"
+                                                    onClick={(e) => { e.stopPropagation(); handleTrade(stock.id, 'BUY'); }}
+                                                >
+                                                    <i className="fas fa-arrow-up" /> B
+                                                </button>
+                                                <button 
+                                                    className="sell-btn"
+                                                    onClick={(e) => { e.stopPropagation(); handleTrade(stock.id, 'SELL'); }}
+                                                >
+                                                    <i className="fas fa-arrow-down" /> S
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
@@ -305,4 +338,4 @@ function TradingView() {
     );
 }
 
-export default TradingView;
+export default TradingView;
