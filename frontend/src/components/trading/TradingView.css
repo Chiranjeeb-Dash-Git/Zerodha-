@@ -22,6 +22,23 @@
     align-items: center;
     gap: 32px;
     overflow-x: auto;
+    position: relative;
+}
+
+/* Subtle animated gradient shimmer on stats bar */
+.trading-stats-bar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(0,229,160,0.03) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: statsShimmer 4s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes statsShimmer {
+    0%   { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
 }
 
 .trading-stats-bar .stat-item {
@@ -180,9 +197,27 @@
 }
 
 .stocks-table tr {
-    transition: background 0.15s ease;
+    transition: background 0.2s ease, transform 0.2s ease;
     cursor: pointer;
+    animation: rowFadeIn 0.4s ease both;
 }
+
+@keyframes rowFadeIn {
+    from { opacity: 0; transform: translateX(10px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Stagger each row's entrance */
+.stocks-table tbody tr:nth-child(1)  { animation-delay: 0.03s; }
+.stocks-table tbody tr:nth-child(2)  { animation-delay: 0.06s; }
+.stocks-table tbody tr:nth-child(3)  { animation-delay: 0.09s; }
+.stocks-table tbody tr:nth-child(4)  { animation-delay: 0.12s; }
+.stocks-table tbody tr:nth-child(5)  { animation-delay: 0.15s; }
+.stocks-table tbody tr:nth-child(6)  { animation-delay: 0.18s; }
+.stocks-table tbody tr:nth-child(7)  { animation-delay: 0.21s; }
+.stocks-table tbody tr:nth-child(8)  { animation-delay: 0.24s; }
+.stocks-table tbody tr:nth-child(9)  { animation-delay: 0.27s; }
+.stocks-table tbody tr:nth-child(10) { animation-delay: 0.30s; }
 
 .stocks-table tr:hover td {
     background: rgba(99, 179, 237, 0.05);
@@ -209,7 +244,20 @@
     font-size: 14px !important;
     color: #e2e8f0 !important;
     font-variant-numeric: tabular-nums;
+    transition: color 0.3s ease;
 }
+
+/* Price flash animation when value updates */
+@keyframes flashGreen {
+    0%   { color: #00e5a0; text-shadow: 0 0 8px rgba(0,229,160,0.6); }
+    100% { color: #e2e8f0; text-shadow: none; }
+}
+@keyframes flashRed {
+    0%   { color: #ff5f7e; text-shadow: 0 0 8px rgba(255,95,126,0.6); }
+    100% { color: #e2e8f0; text-shadow: none; }
+}
+.stock-price-cell.flash-up   { animation: flashGreen 1s ease-out; }
+.stock-price-cell.flash-down { animation: flashRed 1s ease-out; }
 
 .positive {
     color: #00e5a0 !important;
@@ -231,19 +279,35 @@
 }
 
 .buy-btn, .sell-btn {
-    padding: 6px 14px;
+    width: 64px;          /* Fixed equal width - solves Buy vs Sell size mismatch */
+    padding: 7px 0;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     font-weight: 700;
     font-size: 11px;
     letter-spacing: 0.3px;
+    text-transform: uppercase;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    text-transform: uppercase;
+    justify-content: center;
+    gap: 5px;
+    position: relative;
+    overflow: hidden;
 }
+
+/* Ripple shimmer effect on click */
+.buy-btn::after, .sell-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.15);
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    border-radius: 6px;
+}
+.buy-btn:active::after, .sell-btn:active::after { opacity: 1; }
 
 .buy-btn {
     background: rgba(0, 229, 160, 0.15);
