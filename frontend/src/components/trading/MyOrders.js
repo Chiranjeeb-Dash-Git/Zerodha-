@@ -59,15 +59,6 @@ function MyOrders() {
 
     return (
         <div className="my-orders-container">
-            <div className="portfolio-section">
-                <h2>Portfolio</h2>
-                <Portfolio 
-                    portfolio={portfolio}
-                    currentPrices={currentPrices}
-                    onSell={handleSell}
-                />
-            </div>
-
             <div className="order-history-section">
                 <h2>Order History</h2>
                 <div className="orders-table">
@@ -98,6 +89,15 @@ function MyOrders() {
                         </tbody>
                     </table>
                 </div>
+            </div>
+
+            <div className="portfolio-section">
+                <h2>Portfolio</h2>
+                <Portfolio 
+                    portfolio={portfolio}
+                    currentPrices={currentPrices}
+                    onSell={handleSell}
+                />
             </div>
         </div>
     );

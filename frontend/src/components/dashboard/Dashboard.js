@@ -34,6 +34,20 @@ function Dashboard() {
 
     return (
         <div className="dashboard-container">
+            <div className="orders-section">
+                <h2>Recent Orders</h2>
+                <div className="orders-list">
+                    {orders.map(order => (
+                        <div key={order._id} className="order-card">
+                            <h3>{order.symbol}</h3>
+                            <p>Type: {order.type}</p>
+                            <p>Quantity: {order.quantity}</p>
+                            <p>Status: {order.status}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
             <div className="portfolio-section">
                 <h2>Portfolio Overview</h2>
                 {portfolio && (
@@ -48,20 +62,6 @@ function Dashboard() {
                         </div>
                     </div>
                 )}
-            </div>
-
-            <div className="orders-section">
-                <h2>Recent Orders</h2>
-                <div className="orders-list">
-                    {orders.map(order => (
-                        <div key={order._id} className="order-card">
-                            <h3>{order.symbol}</h3>
-                            <p>Type: {order.type}</p>
-                            <p>Quantity: {order.quantity}</p>
-                            <p>Status: {order.status}</p>
-                        </div>
-                    ))}
-                </div>
             </div>
         </div>
     );
