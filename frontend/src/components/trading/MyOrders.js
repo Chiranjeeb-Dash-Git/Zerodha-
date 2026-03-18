@@ -59,6 +59,15 @@ function MyOrders() {
 
     return (
         <div className="my-orders-container">
+            <div className="portfolio-section">
+                <h2>Portfolio</h2>
+                <Portfolio 
+                    portfolio={portfolio}
+                    currentPrices={currentPrices}
+                    onSell={handleSell}
+                />
+            </div>
+
             <div className="order-history-section">
                 <h2>Order History</h2>
                 <div className="orders-table">
@@ -75,29 +84,24 @@ function MyOrders() {
                         </thead>
                         <tbody>
                             {orderHistory.map((order, index) => (
-                                <tr key={index}>
-                                    <td>{order.symbol}</td>
-                                    <td>{order.type}</td>
-                                    <td>{order.quantity}</td>
-                                    <td>₹{order.price?.toFixed(2)}</td>
+                                <tr key={index} style={{ animationDelay: `${index * 0.05}s` }}>
+                                    <td className="stock-symbol-cell">{order.symbol}</td>
+                                    <td>
+                                        <span className={`order-type-badge ${order.type === 'SELL' ? 'order-type-sell' : 'order-type-buy'}`}>
+                                            {order.type}
+                                        </span>
+                                    </td>
+                                    <td style={{ fontFamily: 'JetBrains Mono' }}>{order.quantity}</td>
+                                    <td style={{ fontFamily: 'JetBrains Mono' }}>₹{order.price?.toFixed(2)}</td>
                                     <td className={order.profitLoss >= 0 ? 'profit' : 'loss'}>
                                         {order.profitLoss >= 0 ? '+' : ''}₹{order.profitLoss?.toFixed(2)}
                                     </td>
-                                    <td>{new Date(order.timestamp).toLocaleString()}</td>
+                                    <td className="order-time">{new Date(order.timestamp).toLocaleString()}</td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
                 </div>
-            </div>
-
-            <div className="portfolio-section">
-                <h2>Portfolio</h2>
-                <Portfolio 
-                    portfolio={portfolio}
-                    currentPrices={currentPrices}
-                    onSell={handleSell}
-                />
             </div>
         </div>
     );

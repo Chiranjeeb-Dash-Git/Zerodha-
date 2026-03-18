@@ -1,140 +1,201 @@
+/* ============================================
+   MY ORDERS PRO — 2026 ULTRA PREMIUM
+   ============================================ */
+
 .my-orders-container {
-    padding: 20px;
-    background: #f8f9fa;
+    padding: 40px 20px;
+    background: var(--bg-deep, #05070a);
     min-height: 100vh;
-    max-width: 1400px;
-    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-primary, #f0f4f8);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .portfolio-section,
 .order-history-section {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    padding: 25px;
-    margin-bottom: 30px;
-    transition: all 0.3s ease;
+    background: var(--bg-panel, rgba(13, 17, 23, 0.8));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.08));
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.portfolio-section::before,
+.order-history-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-blue, #00d2ff), transparent);
 }
 
 .portfolio-section:hover,
 .order-history-section:hover {
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-    transform: translateY(-2px);
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    border-color: rgba(0, 210, 255, 0.3);
 }
 
 h2 {
-    margin-bottom: 25px;
-    color: #1a237e;
-    font-size: 24px;
-    font-weight: 600;
-    border-bottom: 2px solid #e3f2fd;
-    padding-bottom: 10px;
+    margin-bottom: 30px;
+    color: #fff;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 25px;
-    margin-top: 20px;
+h2::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.1), transparent);
 }
 
+/* --- Orders Table --- */
 .orders-table {
     overflow-x: auto;
-    border-radius: 8px;
-    background: #ffffff;
+    border-radius: 16px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .orders-table table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
-    margin: 10px 0;
 }
 
 .orders-table th {
-    background: #f5f7fa;
-    padding: 15px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 20px;
     text-align: left;
-    font-weight: 600;
-    color: #2c3e50;
-    border-bottom: 2px solid #e3e8ef;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-secondary, #8e9aaf);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     white-space: nowrap;
 }
 
 .orders-table td {
-    padding: 15px;
-    border-bottom: 1px solid #edf2f7;
-    color: #4a5568;
-    transition: background-color 0.2s ease;
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: #fff;
+    font-size: 14px;
+    transition: all 0.3s ease;
 }
 
-.orders-table tr:hover {
-    background: #f8fafc;
+.orders-table tr {
+    transition: all 0.3s ease;
+}
+
+.orders-table tr:hover td {
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--accent-blue, #00d2ff);
 }
 
 .orders-table tr:last-child td {
     border-bottom: none;
 }
 
-/* Profit/Loss styling */
-.profit {
-    color: #00c853 !important;
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
+/* Badge styling for Type */
+.order-type-badge {
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
-.profit::before {
-    content: "↑";
-    margin-right: 4px;
+.order-type-sell {
+    background: rgba(255, 51, 102, 0.1);
+    color: var(--accent-red, #ff3366);
+    border: 1px solid rgba(255, 51, 102, 0.2);
+}
+
+.order-type-buy {
+    background: rgba(0, 255, 204, 0.1);
+    color: var(--accent-green, #00ffcc);
+    border: 1px solid rgba(0, 255, 204, 0.2);
+}
+
+/* Profit/Loss styling */
+.profit {
+    color: var(--accent-green, #00ffcc) !important;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
 }
 
 .loss {
-    color: #ff1744 !important;
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
+    color: var(--accent-red, #ff3366) !important;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    text-shadow: 0 0 10px rgba(255, 51, 102, 0.3);
 }
 
-.loss::before {
-    content: "↓";
-    margin-right: 4px;
+/* Time styling */
+.order-time {
+    color: var(--text-secondary, #8e9aaf);
+    font-size: 13px;
 }
 
-/* Delete button styling */
-.delete-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    padding: 6px 10px;
-    border-radius: 6px;
-    transition: all 0.2s ease;
-    color: #e53935;
-    opacity: 0.8;
-}
-
-.delete-btn:hover {
-    background: rgba(239, 68, 68, 0.1);
-    transform: scale(1.1);
-    opacity: 1;
+/* Responsive Support */
+@media (max-width: 1024px) {
+    .my-orders-container {
+        padding: 20px;
+    }
 }
 
 @media (max-width: 768px) {
-    .portfolio-grid {
-        grid-template-columns: 1fr;
+    h2 { font-size: 22px; }
+    
+    .portfolio-section,
+    .order-history-section {
+        padding: 20px;
+        border-radius: 16px;
     }
     
-    .orders-table {
-        font-size: 14px;
-    }
-    
-    .orders-table td,
-    .orders-table th {
-        padding: 12px 10px;
-    }
-    
-    .my-orders-container {
-        padding: 15px;
+    .orders-table th, 
+    .orders-table td {
+        padding: 15px 12px;
+        font-size: 13px;
     }
 }
+
+/* Staggered Row Animation - handled in JS but fallback here */
+.orders-table tr {
+    animation: slideInRow 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes slideInRow {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}

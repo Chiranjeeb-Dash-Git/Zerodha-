@@ -82,16 +82,32 @@ function Portfolio({ portfolio, currentPrices, onSell }) {
         <div className="portfolio-grid">
             {updatedPortfolio.map((holding) => (
                 <div key={holding.symbol} className="portfolio-card">
-                    <h3>{holding.symbol}</h3>
+                    <h3>
+                        {holding.symbol}
+                        <span className="live-badge">Live</span>
+                    </h3>
                     <div className="holding-details">
-                        <div>Quantity: {holding.quantity}</div>
-                        <div>Avg. Buy Price: ₹{holding.avgPrice?.toFixed(2) || '0.00'}</div>
-                        <div>Current Price: ₹{holding.currentPrice?.toFixed(2) || '0.00'}</div>
-                        <div className={`profit-loss ${holding.profitLoss >= 0 ? 'positive' : 'negative'}`}>
-                            P/L: ₹{holding.profitLoss?.toFixed(2) || '0.00'} 
-                            ({holding.profitLossPercentage?.toFixed(2) || '0.00'}%)
+                        <div>
+                            <span>Quantity</span>
+                            <span className="value">{holding.quantity}</span>
+                        </div>
+                        <div>
+                            <span>Avg. Buy Price</span>
+                            <span className="value">₹{holding.avgPrice?.toFixed(2) || '0.00'}</span>
+                        </div>
+                        <div>
+                            <span>Current Price</span>
+                            <span className="value" style={{ color: 'var(--accent-blue, #00d2ff)' }}>
+                                ₹{holding.currentPrice?.toFixed(2) || '0.00'}
+                            </span>
                         </div>
                     </div>
+                    
+                    <div className={`profit-loss ${holding.profitLoss >= 0 ? 'positive' : 'negative'}`}>
+                        P/L: {holding.profitLoss >= 0 ? '+' : ''}₹{holding.profitLoss?.toFixed(2) || '0.00'} 
+                        ({holding.profitLossPercentage?.toFixed(2) || '0.00'}%)
+                    </div>
+
                     <div className="chart-container">
                         {chartData[holding.symbol] && (
                             <Bar 
@@ -106,14 +122,34 @@ function Portfolio({ portfolio, currentPrices, onSell }) {
                                         y: {
                                             beginAtZero: false,
                                             grid: {
-                                                color: 'rgba(0, 0, 0, 0.1)'
+                                                color: 'rgba(255, 255, 255, 0.05)',
+                                                drawBorder: false
+                                            },
+                                            ticks: {
+                                                color: 'rgba(255, 255, 255, 0.5)',
+                                                font: { size: 10 }
+                                            }
+                                        },
+                                        x: {
+                                            grid: {
+                                                display: false
+                                            },
+                                            ticks: {
+                                                display: false
                                             }
                                         }
                                     },
                                     plugins: {
                                         legend: {
-                                            display: true,
-                                            position: 'top'
+                                            display: false
+                                        },
+                                        tooltip: {
+                                            backgroundColor: 'rgba(5, 7, 10, 0.9)',
+                                            titleFont: { size: 10 },
+                                            bodyFont: { size: 12 },
+                                            padding: 10,
+                                            cornerRadius: 8,
+                                            displayColors: false
                                         }
                                     }
                                 }}
@@ -124,7 +160,7 @@ function Portfolio({ portfolio, currentPrices, onSell }) {
                         className="sell-btn" 
                         onClick={() => onSell(holding)}
                     >
-                        Sell
+                        Exit Position
                     </button>
                 </div>
             ))}
