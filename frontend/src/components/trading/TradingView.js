@@ -29,102 +29,118 @@ ChartJS.register(
 );
 
 function TradingView() {
-    const navigate = useNavigate();  // Add this line
+    const navigate = useNavigate();
     const [selectedStock, setSelectedStock] = useState(null);
     const [tradeModal, setTradeModal] = useState({ isOpen: false, stock: null, action: null });
     const [portfolio, setPortfolio] = useState([]);
     const [orders, setOrders] = useState([]);
-    const [stocks, setStocks] = useState([
-        { id: 1, symbol: 'TCS', name: 'Tata Consultancy Services', price: 3500, change: '+2.5%', volume: '1.2M' },
-        { id: 2, symbol: 'INFY', name: 'Infosys Limited', price: 1800, change: '-1.2%', volume: '980K' },
-        { id: 3, symbol: 'RELIANCE', name: 'Reliance Industries', price: 2400, change: '+1.8%', volume: '2.1M' },
-        { id: 4, symbol: 'HDFCBANK', name: 'HDFC Bank', price: 1600, change: '+0.5%', volume: '1.5M' },
-        { id: 5, symbol: 'WIPRO', name: 'Wipro Limited', price: 420, change: '-0.8%', volume: '750K' },
-        { id: 6, symbol: 'ITC', name: 'ITC Limited', price: 380, change: '+1.5%', volume: '3.2M' },
-        { id: 7, symbol: 'BHARTIARTL', name: 'Bharti Airtel', price: 780, change: '-1.0%', volume: '890K' },
-        { id: 8, symbol: 'HINDUNILVR', name: 'Hindustan Unilever', price: 2600, change: '+0.7%', volume: '450K' },
-        { id: 9, symbol: 'SBIN', name: 'State Bank of India', price: 550, change: '+1.2%', volume: '4.1M' },
-        { id: 10, symbol: 'ASIANPAINT', name: 'Asian Paints', price: 3200, change: '-0.5%', volume: '320K' }
-    ]);
 
-    const [chartData, setChartData] = useState({
-        labels: Array.from({length: 20}, (_, i) => `${9 + Math.floor(i/2)}:${i%2 ? '30' : '00'}`),
-        datasets: [{
-            label: 'Stock Price',
-            data: Array.from({length: 20}, () => Math.random() * 1000 + 2000),
-            tension: 0.1,
-            backgroundColor: (context) => {
-                const chart = context.chart;
-                const { chartArea } = chart; // Remove unused 'ctx'
-                if (!chartArea) return null;
+    // Generate time labels for today's session
+    const sessionLabels = Array.from({ length: 20 }, (_, i) =>
+        `${9 + Math.floor(i / 2)}:${i % 2 ? '30' : '00'}`
+    );
 
-                const dataPoint = context.dataset.data[context.dataIndex];
-                const prevDataPoint = context.dataset.data[context.dataIndex - 1];
-                
-                return dataPoint >= prevDataPoint 
-                    ? 'rgba(40, 167, 69, 0.6)'
-                    : 'rgba(220, 53, 69, 0.6)';
-            },
-            // Remove duplicate borderColor and combine into single function
-            borderColor: (context) => {
-                const dataPoint = context.dataset.data[context.dataIndex];
-                const prevDataPoint = context.dataset.data[context.dataIndex - 1];
-                return dataPoint >= prevDataPoint 
-                    ? 'rgb(40, 167, 69)'
-                    : 'rgb(220, 53, 69)';
-            },
-            borderWidth: 2
-        }]
+    // Stock list with per-stock price history
+    const [stocks, setStocks] = useState(() => {
+        const initialStocks = [
+            { id: 1, symbol: 'TCS',         name: 'Tata Consultancy Services', price: 3500, change: '+2.5%', volume: '1.2M' },
+            { id: 2, symbol: 'INFY',        name: 'Infosys Limited',           price: 1800, change: '-1.2%', volume: '980K' },
+            { id: 3, symbol: 'RELIANCE',    name: 'Reliance Industries',        price: 2400, change: '+1.8%', volume: '2.1M' },
+            { id: 4, symbol: 'HDFCBANK',    name: 'HDFC Bank',                 price: 1600, change: '+0.5%', volume: '1.5M' },
+            { id: 5, symbol: 'WIPRO',       name: 'Wipro Limited',              price: 420,  change: '-0.8%', volume: '750K' },
+            { id: 6, symbol: 'ITC',         name: 'ITC Limited',               price: 380,  change: '+1.5%', volume: '3.2M' },
+            { id: 7, symbol: 'BHARTIARTL',  name: 'Bharti Airtel',             price: 780,  change: '-1.0%', volume: '890K' },
+            { id: 8, symbol: 'HINDUNILVR',  name: 'Hindustan Unilever',        price: 2600, change: '+0.7%', volume: '450K' },
+            { id: 9, symbol: 'SBIN',        name: 'State Bank of India',       price: 550,  change: '+1.2%', volume: '4.1M' },
+            { id: 10, symbol: 'ASIANPAINT', name: 'Asian Paints',              price: 3200, change: '-0.5%', volume: '320K' },
+        ];
+        // Seed 20 historical price points per stock
+        return initialStocks.map(s => ({
+            ...s,
+            history: Array.from({ length: 20 }, (_, i) =>
+                +(s.price * (1 + (Math.random() - 0.5) * 0.06 * (i / 20))).toFixed(2)
+            )
+        }));
     });
+
+    // Build chartData from the selected stock's history (or a default "market" view)
+    const buildChartData = (stockList, selected) => {
+        const src = selected
+            ? stockList.find(s => s.id === selected.id)
+            : stockList[0]; // default to first stock
+        const data = src ? src.history : [];
+        const isUp = data.length > 1 && data[data.length - 1] >= data[0];
+        const lineColor = isUp ? '#00e5a0' : '#ff5f7e';
+        const fillColor = isUp ? 'rgba(0,229,160,0.08)' : 'rgba(255,95,126,0.08)';
+
+        return {
+            labels: sessionLabels,
+            datasets: [{
+                label: src ? src.symbol : 'Market',
+                data,
+                borderColor: lineColor,
+                backgroundColor: fillColor,
+                borderWidth: 2.5,
+                tension: 0.4,
+                fill: true,
+                pointRadius: 0,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: lineColor,
+            }]
+        };
+    };
+
+    const [chartData, setChartData] = useState(() => buildChartData(stocks, null));
+
+    // When user clicks a stock row, update chart immediately
+    const handleSelectStock = (stock) => {
+        setSelectedStock(stock);
+        setChartData(buildChartData(stocks, stock));
+    };
 
     // Load data from localStorage on component mount
     useEffect(() => {
         const savedPortfolio = localStorage.getItem('portfolio');
-        if (savedPortfolio) {
-            setPortfolio(JSON.parse(savedPortfolio));
-        }
-        
+        if (savedPortfolio) setPortfolio(JSON.parse(savedPortfolio));
         const savedOrders = localStorage.getItem('orders');
-        if (savedOrders) {
-            setOrders(JSON.parse(savedOrders));
-        }
+        if (savedOrders) setOrders(JSON.parse(savedOrders));
     }, []);
 
-    // Save portfolio to localStorage whenever it changes
-    useEffect(() => {
-        localStorage.setItem('portfolio', JSON.stringify(portfolio));
-    }, [portfolio]);
+    // Save portfolio & orders to localStorage whenever they change
+    useEffect(() => { localStorage.setItem('portfolio', JSON.stringify(portfolio)); }, [portfolio]);
+    useEffect(() => { localStorage.setItem('orders', JSON.stringify(orders)); }, [orders]);
 
-    // Save orders to localStorage whenever they change
+    // Real-time price updates — also append to history & refresh chart
     useEffect(() => {
-        localStorage.setItem('orders', JSON.stringify(orders));
-    }, [orders]);
-
-    useEffect(() => {
-        // Simulate real-time updates
         const interval = setInterval(() => {
-            setStocks(prevStocks => 
-                prevStocks.map(stock => ({
-                    ...stock,
-                    price: stock.price * (1 + (Math.random() - 0.5) * 0.02),
-                    change: `${(Math.random() - 0.5) > 0 ? '+' : '-'}${(Math.random() * 2).toFixed(1)}%`
-                }))
-            );
+            setStocks(prevStocks => {
+                const updated = prevStocks.map(stock => {
+                    const newPrice = +(stock.price * (1 + (Math.random() - 0.5) * 0.02)).toFixed(2);
+                    const diff = newPrice - stock.price;
+                    const changePct = ((diff / stock.price) * 100).toFixed(1);
+                    const newHistory = [...stock.history.slice(1), newPrice];
+                    return {
+                        ...stock,
+                        price: newPrice,
+                        change: `${diff >= 0 ? '+' : ''}${changePct}%`,
+                        history: newHistory,
+                    };
+                });
 
-            // Update chart data
-            setChartData(prevData => ({
-                ...prevData,
-                datasets: [{
-                    ...prevData.datasets[0],
-                    data: [...prevData.datasets[0].data.slice(1), 
-                           prevData.datasets[0].data[prevData.datasets[0].data.length - 1] * 
-                           (1 + (Math.random() - 0.5) * 0.02)]
-                }]
-            }));
+                // Also refresh chart for the currently selected stock
+                setChartData(prev => {
+                    const sel = updated.find(s => s.symbol === prev.datasets[0]?.label);
+                    return buildChartData(updated, sel || null);
+                });
+
+                return updated;
+            });
         }, 2000);
 
         return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
 
     const handleTrade = (stockId, action) => {
         // For sell action, we need to find the current market price
@@ -293,7 +309,11 @@ function TradingView() {
                             </thead>
                             <tbody>
                                 {stocks.map(stock => (
-                                    <tr key={stock.id} onClick={() => setSelectedStock(stock)}>
+                                    <tr
+                                        key={stock.id}
+                                        onClick={() => handleSelectStock(stock)}
+                                        style={selectedStock?.id === stock.id ? { background: 'rgba(99,179,237,0.1)', borderLeft: '3px solid #90cdf4' } : {}}
+                                    >
                                         <td>
                                             <div className="stock-symbol-cell">{stock.symbol}</div>
                                             <div className="stock-name-cell">{stock.name}</div>
@@ -304,17 +324,17 @@ function TradingView() {
                                         </td>
                                         <td>
                                             <div className="actions-cell">
-                                                <button 
+                                                <button
                                                     className="buy-btn"
                                                     onClick={(e) => { e.stopPropagation(); handleTrade(stock.id, 'BUY'); }}
                                                 >
-                                                    <i className="fas fa-arrow-up" /> B
+                                                    <i className="fas fa-arrow-up" /> Buy
                                                 </button>
-                                                <button 
+                                                <button
                                                     className="sell-btn"
                                                     onClick={(e) => { e.stopPropagation(); handleTrade(stock.id, 'SELL'); }}
                                                 >
-                                                    <i className="fas fa-arrow-down" /> S
+                                                    <i className="fas fa-arrow-down" /> Sell
                                                 </button>
                                             </div>
                                         </td>
