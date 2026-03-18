@@ -319,15 +319,29 @@ function TradingView() {
                                     <tr
                                         key={stock.id}
                                         onClick={() => handleSelectStock(stock)}
-                                        style={selectedStock?.id === stock.id ? { background: 'rgba(99,179,237,0.1)', borderLeft: '3px solid #90cdf4' } : {}}
+                                        className={selectedStock?.id === stock.id ? 'active-row' : ''}
+                                        style={selectedStock?.id === stock.id ? { background: 'rgba(0, 210, 255, 0.08)', borderLeft: '4px solid #00d2ff' } : {}}
                                     >
                                         <td>
                                             <div className="stock-symbol-cell">{stock.symbol}</div>
                                             <div className="stock-name-cell">{stock.name}</div>
                                         </td>
-                                        <td className={`stock-price-cell ${stock.flashStatus || ''}`}>₹{stock.price.toFixed(2)}</td>
+                                        <td className={`stock-price-cell ${stock.flashStatus || ''}`}>
+                                            ₹{stock.price.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                                        </td>
                                         <td className={stock.change.startsWith('+') ? 'positive' : 'negative'}>
-                                            {stock.change}
+                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                                                <span>{stock.change}</span>
+                                                {/* P&L Visual Bar */}
+                                                <div style={{ width: '40px', height: '3px', background: 'rgba(255,255,255,0.05)', borderRadius: '2px', overflow: 'hidden' }}>
+                                                    <div style={{ 
+                                                        width: `${Math.min(Math.abs(parseFloat(stock.change)) * 20, 100)}%`, 
+                                                        height: '100%', 
+                                                        background: stock.change.startsWith('+') ? 'var(--accent-green)' : 'var(--accent-red)',
+                                                        boxShadow: `0 0 5px ${stock.change.startsWith('+') ? 'var(--accent-green)' : 'var(--accent-red)'}`
+                                                    }} />
+                                                </div>
+                                            </div>
                                         </td>
                                         <td>
                                             <div className="actions-cell">
@@ -335,13 +349,13 @@ function TradingView() {
                                                     className="buy-btn"
                                                     onClick={(e) => { e.stopPropagation(); handleTrade(stock.id, 'BUY'); }}
                                                 >
-                                                    <i className="fas fa-arrow-up" /> Buy
+                                                    <i className="fas fa-long-arrow-alt-up" /> BUY
                                                 </button>
                                                 <button
                                                     className="sell-btn"
                                                     onClick={(e) => { e.stopPropagation(); handleTrade(stock.id, 'SELL'); }}
                                                 >
-                                                    <i className="fas fa-arrow-down" /> Sell
+                                                    <i className="fas fa-long-arrow-alt-down" /> SELL
                                                 </button>
                                             </div>
                                         </td>
