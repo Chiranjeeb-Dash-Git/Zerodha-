@@ -57,7 +57,7 @@
 /* === Page Body === */
 .trading-body {
     display: grid;
-    grid-template-columns: 1fr 420px;
+    grid-template-columns: 3fr 2fr;
     gap: 0;
     min-height: calc(100vh - 57px);
 }
