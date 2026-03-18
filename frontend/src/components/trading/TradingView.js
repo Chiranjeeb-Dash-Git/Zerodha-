@@ -263,30 +263,64 @@ function TradingView() {
                     </div>
                     <div className="chart-container">
                         <Line 
-                            data={chartData}
+                            data={{
+                                ...chartData,
+                                datasets: chartData.datasets.map(ds => ({
+                                    ...ds,
+                                    fill: true,
+                                    backgroundColor: (context) => {
+                                        const ctx = context.chart.ctx;
+                                        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+                                        const color = ds.borderColor;
+                                        gradient.addColorStop(0, color.replace(')', ', 0.2)').replace('rgb', 'rgba'));
+                                        gradient.addColorStop(1, 'rgba(0,0,0,0)');
+                                        return gradient;
+                                    },
+                                    shadowBlur: 15,
+                                    shadowColor: ds.borderColor,
+                                }))
+                            }}
                             options={{
                                 responsive: true,
                                 maintainAspectRatio: false,
+                                animation: { duration: 1000, easing: 'easeInOutQuart' },
                                 plugins: {
                                     legend: { display: false },
-                                    title: { display: false }
+                                    tooltip: {
+                                        enabled: true,
+                                        backgroundColor: 'rgba(13, 17, 23, 0.95)',
+                                        titleFont: { family: "'Outfit', sans-serif", size: 13, weight: '700' },
+                                        bodyFont: { family: "'JetBrains Mono', monospace", size: 12 },
+                                        padding: 12,
+                                        borderColor: 'rgba(255,255,255,0.1)',
+                                        borderWidth: 1,
+                                        displayColors: false,
+                                        callbacks: {
+                                            label: (context) => ` ₹${context.parsed.y.toLocaleString('en-IN')}`
+                                        }
+                                    }
                                 },
                                 scales: {
                                     y: {
                                         beginAtZero: false,
-                                        grid: { color: 'rgba(255,255,255,0.04)' },
-                                        ticks: { color: '#4a5568', font: { size: 11 } },
-                                        border: { color: 'transparent' }
+                                        grid: { color: 'rgba(255,255,255,0.03)', drawBorder: false },
+                                        ticks: { 
+                                            color: '#8e9aaf', 
+                                            font: { family: "'JetBrains Mono', monospace", size: 10 },
+                                            callback: (value) => '₹' + value.toLocaleString('en-IN')
+                                        }
                                     },
                                     x: {
                                         grid: { display: false },
-                                        ticks: { color: '#4a5568', font: { size: 11 } },
-                                        border: { color: 'rgba(255,255,255,0.04)' }
+                                        ticks: { 
+                                            color: '#8e9aaf', 
+                                            font: { family: "'Outfit', sans-serif", size: 10 } 
+                                        }
                                     }
                                 },
                                 elements: {
-                                    line: { tension: 0.4, borderWidth: 2 },
-                                    point: { radius: 0, hoverRadius: 5 }
+                                    line: { tension: 0.4, borderWidth: 3, capBezierPoints: true },
+                                    point: { radius: 0, hoverRadius: 6, hoverBorderWidth: 2, hoverBackgroundColor: '#fff' }
                                 }
                             }}
                         />
