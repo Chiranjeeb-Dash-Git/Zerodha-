@@ -34,7 +34,7 @@ function Login() {
         localStorage.setItem('token', data.token);
         navigate('/dashboard');
       } else {
-        setError('Invalid credentials');
+        setError(data.message || 'Invalid credentials');
       }
     } catch (error) {
       setError('Login failed. Please try again.');
