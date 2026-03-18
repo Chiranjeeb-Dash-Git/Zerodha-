@@ -27,6 +27,15 @@ app.get('/healthz', (req, res) => {
     res.status(200).send('ok');
 });
 
+app.get('/api/debug', (req, res) => {
+    res.json({
+        env: process.env.NODE_ENV,
+        hasJwtSecret: !!process.env.JWT_SECRET,
+        mongoConnected: mongoose.connection.readyState === 1,
+        mongoUriExists: !!process.env.MONGODB_URI
+    });
+});
+
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/portfolio', require('./routes/portfolio'));
 app.use('/api/market', require('./routes/market'));
