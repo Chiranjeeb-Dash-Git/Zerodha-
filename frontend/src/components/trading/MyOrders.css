@@ -4,12 +4,20 @@
 
 .my-orders-container {
     padding: 40px 20px;
-    background: var(--bg-deep, #05070a);
+    background: #05070a; /* Explicit dark background for this page */
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(0, 210, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255, 51, 102, 0.05) 0%, transparent 50%);
     min-height: 100vh;
-    width: 100%;
+    width: 100vw; /* Use vw to ensure it covers the whole width */
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
     box-sizing: border-box;
     font-family: 'Outfit', sans-serif;
-    color: var(--text-primary, #f0f4f8);
+    color: #f0f4f8;
     display: flex;
     flex-direction: column;
     gap: 30px;
