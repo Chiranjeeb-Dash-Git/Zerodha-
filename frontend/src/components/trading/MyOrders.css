@@ -19,7 +19,8 @@
     font-family: 'Outfit', sans-serif;
     color: #f0f4f8;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: flex-start;
     gap: 30px;
     animation: fadeIn 0.8s ease-out;
 }
@@ -41,6 +42,7 @@
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;
+    flex: 1;
     max-width: 1100px;
     width: 100%;
     margin: 0 auto;
@@ -178,6 +180,7 @@ h2::after {
 @media (max-width: 1024px) {
     .my-orders-container {
         padding: 20px;
+        flex-direction: column;
     }
 }
 
