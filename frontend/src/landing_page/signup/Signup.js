@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './Signup.css';
 import NavBar from '../home/NavBar';
 import Footer from '../home/Footer';
 import { API_BASE } from '../../config';
 
 function Signup() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -40,7 +42,7 @@ function Signup() {
       const data = await response.json();
       if (data.token) {
         localStorage.setItem('token', data.token);
-        window.location.href = '/dashboard';
+        navigate('/dashboard');
       }
     } catch (error) {
       setError('Registration failed. Please try again.');
@@ -130,7 +132,7 @@ function Signup() {
                 </form>
                 
                 <div className="mt-4 text-center">
-                  <p>Already have an account? <a href="/login" className="text-decoration-none">Log in</a></p>
+                  <p>Already have an account? <Link to="/login" className="text-decoration-none">Log in</Link></p>
                 </div>
               </div>
             </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+import { Link } from 'react-router-dom'
 import './Footer.css'
 
 function Footer() {
@@ -22,36 +22,36 @@ function Footer() {
           <div className="col-md-2">
             <h5>Company</h5>
             <ul>
-              <li><a href="/about">About</a></li>
-              <li><a href="/products">Products</a></li>
-              <li><a href="/pricing">Pricing</a></li>
-              <li><a href="/careers">Careers</a></li>
-              <li><a href="/media">Media & Press</a></li>
-              <li><a href="/zerodha.tech">Zerodha.tech</a></li>
+              <li><Link to="/about">About</Link></li>
+              <li><Link to="/products">Products</Link></li>
+              <li><Link to="/pricing">Pricing</Link></li>
+              <li><Link to="/careers">Careers</Link></li>
+              <li><Link to="/media">Media & Press</Link></li>
+              <li><Link to="/zerodha.tech">Zerodha.tech</Link></li>
             </ul>
           </div>
           <div className="col-md-2">
             <h5>Support</h5>
             <ul>
-              <li><a href="/contact">Contact</a></li>
-              <li><a href="/support">Support Portal</a></li>
-              <li><a href="/z-connect">Z-Connect Blog</a></li>
-              <li><a href="/margin-calculator">Margin Calculator</a></li>
-              <li><a href="/resources">Resources</a></li>
+              <li><Link to="/contact">Contact</Link></li>
+              <li><Link to="/support">Support Portal</Link></li>
+              <li><Link to="/z-connect">Z-Connect Blog</Link></li>
+              <li><Link to="/margin-calculator">Margin Calculator</Link></li>
+              <li><Link to="/resources">Resources</Link></li>
             </ul>
           </div>
           <div className="col-md-2">
             <h5>Account</h5>
             <ul>
-              <li><a href="/open-account">Open an Account</a></li>
-              <li><a href="/fund-transfer">Fund Transfer</a></li>
+              <li><Link to="/open-account">Open an Account</Link></li>
+              <li><Link to="/fund-transfer">Fund Transfer</Link></li>
               <li><a href="https://console.zerodha.com">60 day challenge</a></li>
             </ul>
           </div>
           <div className="col-md-3">
             <div className="footer-info">
               <img src="https://zerodha.com/static/images/footer-map.svg" alt="Zerodha Offices" className="map-image" />
-              <a href="/contact" className="office-link">Find our offices</a>
+              <Link to="/contact" className="office-link">Find our offices</Link>
             </div>
           </div>
         </div>

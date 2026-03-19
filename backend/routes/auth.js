@@ -37,6 +37,7 @@ router.post('/register', async (req, res) => {
         res.status(500).json({ 
             message: 'Server error during registration', 
             error: error.message,
+            code: 'REGISTRATION_ERROR',
             stack: process.env.NODE_ENV === 'production' ? null : error.stack
         });
     }
@@ -67,7 +68,8 @@ router.post('/login', async (req, res) => {
         console.error('Login Error:', error);
         res.status(500).json({ 
             message: 'Server error during login', 
-            error: error.message 
+            error: error.message,
+            code: 'LOGIN_ERROR'
         });
     }
 });

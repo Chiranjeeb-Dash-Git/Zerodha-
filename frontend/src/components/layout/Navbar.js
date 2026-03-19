@@ -15,7 +15,7 @@ function Navbar() {
         <nav className="navbar">
             <div className="navbar-container">
                 <Link to="/" className="navbar-logo">
-                    <img src="/logo.png" alt="Zerodha" />
+                    <img src={process.env.PUBLIC_URL + "/logo.png"} alt="Zerodha" />
                 </Link>
 
                 {token ? (

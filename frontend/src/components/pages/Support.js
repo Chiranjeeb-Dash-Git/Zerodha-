@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Support() {
   return (
@@ -15,10 +16,10 @@ function Support() {
           <div className="col-md-6">
             <h3>Quick Links</h3>
             <ul className="list-unstyled">
-              <li><a href="/support/portal" className="text-decoration-none">Support Portal</a></li>
-              <li><a href="/support/knowledge" className="text-decoration-none">Knowledge Base</a></li>
-              <li><a href="/market-updates" className="text-decoration-none">Market Updates</a></li>
-              <li><a href="/contact" className="text-decoration-none">Contact Us</a></li>
+              <li><Link to="/support/portal" className="text-decoration-none">Support Portal</Link></li>
+              <li><Link to="/support/knowledge" className="text-decoration-none">Knowledge Base</Link></li>
+              <li><Link to="/market-updates" className="text-decoration-none">Market Updates</Link></li>
+              <li><Link to="/contact" className="text-decoration-none">Contact Us</Link></li>
             </ul>
           </div>
         </div>

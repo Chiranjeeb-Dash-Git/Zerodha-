@@ -10,6 +10,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Check required environment variables
+const requiredEnv = ['MONGODB_URI', 'JWT_SECRET'];
+requiredEnv.forEach(envVar => {
+    if (!process.env[envVar]) {
+        console.warn(`WARNING: Environment variable ${envVar} is missing!`);
+    } else {
+        console.log(`Environment variable ${envVar} is set.`);
+    }
+});
+
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/zerodha')
     .then(() => console.log('Connected to MongoDB'))

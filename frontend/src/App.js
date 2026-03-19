@@ -1,5 +1,5 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import HomePage from './landing_page/home/HomePage';  // HomePage already includes NavBar
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
@@ -12,9 +12,21 @@ import TradingView from './components/trading/TradingView';  // Add this import
 import Orders from './components/orders/Orders';
 import MyOrders from './components/trading/MyOrders';
 
+// ScrollToTop component to scroll to top on route change
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function App() {
   return (
     <div className="app">
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<About />} />

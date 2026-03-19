@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Login.css';
 import { API_BASE } from '../../config';
 
@@ -139,7 +139,7 @@ function Register() {
                 </form>
                 
                 <div className="mt-4 text-center">
-                  <p>Already have an account? <a href="/login" className="text-decoration-none">Login</a></p>
+                  <p>Already have an account? <Link to="/login" className="text-decoration-none">Login</Link></p>
                 </div>
               </div>
             </div>
