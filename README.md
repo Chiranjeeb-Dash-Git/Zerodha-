@@ -1,4 +1,13 @@
 <div align="center">
+  <div align="center">
+  <br />
+  <a href="https://chiranjeeb-dash-git.github.io/Zerodha-/">
+    <img src="https://img.shields.io/badge/LAUNCH-LIVE_DEMO-8B5CF6?style=for-the-badge&logoColor=white&logo=render" height="50" alt="Live Demo" />
+  </a>
+  <br />
+  <br />
+</div>
+
   <img src="assets/banner.png" alt="Zerodha Banner" width="100%">
   
   <h1>📈 Zerodha – Premium Stock Trading Platform</h1>
