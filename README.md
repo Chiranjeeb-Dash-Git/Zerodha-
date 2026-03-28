@@ -12,9 +12,15 @@
   
   <h1>📈 Zerodha – Premium Stock Trading Platform</h1>
   
-  <p align="center">
-    <a href="https://chiranjeeb-dash-git.github.io/Zerodha-/"><strong>Live Demo »</strong></a>
-    <br />
+  <div align="center">
+  <div align="center">
+  <br />
+  <a href="https://chiranjeeb-dash-git.github.io/Zerodha-/">
+    <img src="https://img.shields.io/badge/LAUNCH-LIVE_DEMO-8B5CF6?style=for-the-badge&logoColor=white&logo=render" height="50" alt="Live Demo" />
+  </a>
+  <br />
+  <br />
+</div>
     <br />
     <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
     <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js" />
